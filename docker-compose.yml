@@ -1,10 +1,25 @@
+# Development database via Supabase CLI
+#
+# For local development, use `supabase start` instead of `docker compose up`.
+# The Supabase CLI manages its own Docker containers for the local development
+# stack (DB, Storage, Studio, etc.), configured via supabase/config.toml.
+#
+# This docker-compose.yml provides a lightweight standalone PostgreSQL container
+# for CI and scenarios where the full Supabase stack is not needed (e.g., fast
+# unit tests). For self-hosted production deployment, see the official Supabase
+# self-hosting guide: https://supabase.com/docs/guides/self-hosting/docker
+#
+# Usage:
+#   Local dev (full Supabase stack):  supabase start
+#   CI / unit tests only:            docker compose up -d
+
 services:
   db:
-    image: postgres:17
+    image: supabase/postgres:17.4.1.024
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${DB_NAME:-fastapi-jinja2-postgres-webapp}
+      POSTGRES_DB: ${DB_NAME:-postgres}
     ports:
       - "${DB_PORT:-5432}:5432"
     volumes:

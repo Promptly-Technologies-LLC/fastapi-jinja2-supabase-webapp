@@ -17,10 +17,12 @@
     "DOCKER_API_VERSION": "1.43"
   },
 
-  "forwardPorts": [8000, 5432],
+  "forwardPorts": [8000, 54322, 54321, 54323],
   "portsAttributes": {
     "8000": { "label": "FastAPI", "onAutoForward": "openBrowser" },
-    "5432": { "label": "PostgreSQL" }
+    "54322": { "label": "Supabase DB" },
+    "54321": { "label": "Supabase API" },
+    "54323": { "label": "Supabase Studio", "onAutoForward": "ignore" }
   },
   "initializeCommand": "bash \"${localWorkspaceFolder}/.devcontainer/ensure-env.sh\"",
   "postStartCommand": "bash .devcontainer/post-start.sh",

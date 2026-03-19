@@ -153,10 +153,56 @@ the Resend
 dashboard](https://resend.com/docs/dashboard/domains/introduction) to
 send emails from that domain.
 
+### Install Supabase CLI
+
+MacOS:
+
+``` bash
+brew install supabase/tap/supabase
+```
+
+Linux:
+
+``` bash
+brew install supabase/tap/supabase
+```
+
+Or see the [Supabase CLI installation
+docs](https://supabase.com/docs/guides/cli/getting-started#installing-the-supabase-cli)
+for other methods.
+
 ### Start development database
 
-To start the development database, run the following command in your
-terminal from the root directory:
+Start the local Supabase stack (DB, Storage, Studio):
+
+``` bash
+supabase start
+```
+
+This boots a local Supabase environment configured via
+`supabase/config.toml`. The database is available at
+`localhost:54322`, and Supabase Studio is at `localhost:54323`.
+
+To apply pending migrations:
+
+``` bash
+supabase migration up
+```
+
+To stop the local stack:
+
+``` bash
+supabase stop
+```
+
+To reset the database (drops all data and re-applies migrations):
+
+``` bash
+supabase db reset
+```
+
+**Alternatively**, for CI or lightweight testing without the full
+Supabase stack, you can start just a PostgreSQL container:
 
 ``` bash
 docker compose up -d
